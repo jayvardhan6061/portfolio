@@ -49,12 +49,12 @@
     color:var(--accent2); padding:0.4rem 1rem; border-radius:50px;
     font-size:0.8rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase;
     margin-bottom:1.5rem;
-    animation: fadeUp 0.8s ease forwards;
+    animation: fadeUp 0.8s ease forwards; opacity:1;
   }
   .hero h1 {
     font-family:'Syne',sans-serif; font-size:clamp(2.5rem,5vw,4rem);
     font-weight:800; line-height:1.1; margin-bottom:1.5rem;
-    animation: fadeUp 0.8s 0.1s ease forwards; opacity:0;
+    animation: fadeUp 0.8s 0.1s ease forwards;
   }
   .hero h1 span { 
     background: linear-gradient(135deg, var(--accent2), var(--accent3));
@@ -62,9 +62,9 @@
   }
   .hero-desc {
     font-size:1.1rem; color:var(--muted); line-height:1.8; margin-bottom:2rem;
-    animation: fadeUp 0.8s 0.2s ease forwards; opacity:0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
   }
-  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; animation: fadeUp 0.8s 0.3s ease forwards; opacity:0; }
+  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; animation: fadeUp 0.8s 0.3s ease forwards; }
   .btn-primary {
     background:linear-gradient(135deg, var(--accent), var(--accent2));
     color:#fff; padding:0.8rem 2rem; border-radius:50px;
@@ -82,7 +82,7 @@
 
   /* PHOTO CARD */
   .photo-card {
-    position:relative; animation: fadeUp 0.8s 0.4s ease forwards; opacity:0;
+    position:relative; animation: fadeUp 0.8s 0.4s ease forwards;
   }
   .photo-frame {
     width:320px; height:380px; border-radius:20px; overflow:hidden;
@@ -251,10 +251,11 @@
     to { opacity:1; transform:translateY(0); }
   }
   .fade-in {
-    opacity:0; transform:translateY(20px);
+    opacity:1; transform:translateY(0);
     transition:opacity 0.6s ease, transform 0.6s ease;
   }
-  .fade-in.visible { opacity:1; transform:translateY(0); }
+  .fade-in.animate { opacity:0; transform:translateY(20px); }
+  .fade-in.animate.visible { opacity:1; transform:translateY(0); }
 
   /* DIVIDER */
   .full-width { max-width:100%; padding:0 4rem; }
@@ -290,7 +291,7 @@
         Published researcher · National-level hackathon finalist · Top 10% academic performer.
       </p>
       <div class="hero-btns">
-        <a href="/cdn-cgi/l/email-protection#7218130b13041300161a131c001716160b4442444332151f131b1e5c111d1f" class="btn-primary">📧 Get In Touch</a>
+        <a href="/cdn-cgi/l/email-protection#a6ccc7dfc7d0c7d4c2cec7c8d4c3c2c2df90969097e6c1cbc7cfca88c5c9cb" class="btn-primary">📧 Get In Touch</a>
         <a href="https://github.com/jayvardhan6061" target="_blank" class="btn-outline">GitHub</a>
         <a href="https://www.linkedin.com/in/jaya6061" target="_blank" class="btn-outline">LinkedIn</a>
       </div>
@@ -586,7 +587,7 @@
   <div class="footer-name">Koppula Jaya Vardhan Reddy</div>
   <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem;">AI Engineer · Deep Learning Researcher · National Hackathon Finalist</p>
   <div class="footer-links">
-    <a href="/cdn-cgi/l/email-protection#deb4bfa7bfa8bfacbab6bfb0acbbbabaa7e8eee8ef9eb9b3bfb7b2f0bdb1b3">📧 <span class="__cf_email__" data-cfemail="4228233b23342330262a232c302726263b7472747302252f232b2e6c212d2f">[email&#160;protected]</span></a>
+    <a href="/cdn-cgi/l/email-protection#ee848f978f988f9c8a868f809c8b8a8a97d8ded8dfae89838f8782c08d8183">📧 <span class="__cf_email__" data-cfemail="412b2038203720332529202f33242525387771777001262c20282d6f222e2c">[email&#160;protected]</span></a>
     <a href="tel:+919515403595">📞 9515403595</a>
     <a href="https://github.com/jayvardhan6061" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/jaya6061" target="_blank">LinkedIn</a>
@@ -604,7 +605,10 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-in').forEach(el => {
+    el.classList.add('animate');
+    observer.observe(el);
+  });
 
   // Smooth active nav highlighting
   const sections = document.querySelectorAll('section, .hero');
